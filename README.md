@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezina Bhatta - Student Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    /* Reset and basic styles */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Roboto', sans-serif; line-height: 1.6; background: #f5f5f5; color: #333; }
+    
+    /* Navigation bar */
+    nav { background: #4CAF50; padding: 15px; position: sticky; top: 0; z-index: 100; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+
+    /* Header / Landing section */
+    header { text-align: center; padding: 80px 20px; background: #66BB6A; color: white; }
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; margin-bottom: 5px; }
+
+    /* Section styles */
+    section { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    h2 { color: #4CAF50; border-bottom: 2px solid #4CAF50; display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 20px; }
+    .project-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .project-card h3 { margin-bottom: 10px; }
+    .project-card p { color: #555; }
+
+    /* Skills */
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill { background: #e8f5e9; color: #333; padding: 8px 15px; border-radius: 20px; font-weight: bold; }
+
+    /* Contact */
+    #contact p { font-size: 1.1rem; }
+
+    /* Footer */
+    footer { background: #4CAF50; color: white; text-align: center; padding: 20px 0; margin-top: 40px; }
+
+    /* Responsive adjustments */
+    @media(max-width: 600px) {
+        header h1 { font-size: 2.2rem; }
+        nav a { display: block; margin: 10px 0; }
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- Header / Landing -->
+<header id="home">
+    <h1>Rezina Bhatta</h1>
+    <p>Email: <a href="mailto:bhattarezina07@gmail.com" style="color:white;">bhattarezina07@gmail.com</a></p>
+    <p>Hi! I am a student passionate about coding and building small web projects.</p>
+</header>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+        <div class="project-card">
+            <h3>Simple Calculator</h3>
+            <p>A basic calculator built using HTML, CSS, and JavaScript.</p>
+        </div>
+        <div class="project-card">
+            <h3>Todo List App</h3>
+            <p>Manage daily tasks with add, delete, and mark-complete features.</p>
+        </div>
+        <div class="project-card">
+            <h3>Personal Blog Template</h3>
+            <p>A clean, responsive template for a personal blog using HTML/CSS.</p>
+        </div>
+        <div class="project-card">
+            <h3>Weather App</h3>
+            <p>Displays live weather information using JavaScript and API calls.</p>
+        </div>
+        <div class="project-card">
+            <h3>Tic-Tac-Toe Game</h3>
+            <p>A browser-based interactive Tic-Tac-Toe game.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Responsive Design</div>
+        <div class="skill">Problem Solving</div>
+        <div class="skill">Teamwork</div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>If you want to get in touch, email me at <a href="mailto:bhattarezina07@gmail.com">bhattarezina07@gmail.com</a></p>
+</section>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 Rezina Bhatta. All rights reserved.
+</footer>
+
+</body>
+</html>
