@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic-Tac-Toe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f9f9f9;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin: 20px auto;
+      width: max-content;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5em;
+      cursor: pointer;
+    }
+    .cell.taken {
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    #reset {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: white;
+      cursor: pointer;
+    }
+    #reset:hover {
+      background: #555;
+    }
+    #chat-link {
+      margin-top: 15px;
+      display: block;
+      font-size: 0.9em;
+      color: #007BFF;
+      text-decoration: none;
+    }
+    #chat-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tic-Tac-Toe</h1>
+  <div id="board"></div>
+  <div id="status">Player X's turn</div>
+  <button id="reset">Restart Game</button>
+  
+  <!-- AI chat history link -->
+  <a id="chat-link" href="https://chatgpt.com/share/68d20a78-00bc-800e-9973-9f6920ef16bf" target="_blank">
+    View AI Chat History
+  </a>
 
+  <script>
+    const boardElement = document.getElementById("board");
+    const statusElement = document.getElementById("status");
+    const resetButton = document.getElementById("reset");
+
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X";
+    let gameActive = true;
+
+    const winningConditions = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
+
+    function createBoard() {
+      boardElement.innerHTML = "";
+      board.forEach((_, index) => {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.setAttribute("data-index", index);
+        cell.addEventListener("click", handleCellClick);
+        boardElement.appendChild(cell);
+      });
+    }
+
+    function handleCellClick(e) {
+      const index = e.target.getAttribute("data-index");
+      if (board[index] !== "" || !gameActive) return;
+
+      board[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+      e.target.classList.add("taken");
+
+      if (checkWin()) {
+        statusElement.textContent = `Player ${currentPlayer} wins! 🎉`;
+        gameActive = false;
+        return;
+      }
+
+      if (board.every(cell => cell !== "")) {
+        statusElement.textContent = "It's a draw!";
+        gameActive = false;
+        return;
+      }
+
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      statusElement.textContent = `Player ${currentPlayer}'s turn`;
+    }
+
+    function checkWin() {
+      return winningConditions.some(condition => {
+        const [a, b, c] = condition;
+        return (
+          board[a] &&
+          board[a] === board[b] &&
+          board[a] === board[c]
+        );
+      });
+    }
+
+    function resetGame() {
+      board = ["", "", "", "", "", "", "", "", ""];
+      currentPlayer = "X";
+      gameActive = true;
+      statusElement.textContent = "Player X's turn";
+      createBoard();
+    }
+
+    resetButton.addEventListener("click", resetGame);
+
+    createBoard();
+  </script>
+</body>
+</html>
