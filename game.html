@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors - AI Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .choices button {
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      transition: 0.3s;
+    }
+    .choices button:hover {
+      background: #45a049;
+    }
+    .result, .score {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    .link {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+    .winner {
+      font-size: 24px;
+      color: #e63946;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock Paper Scissors (AI)</h1>
+  <p>First to 5 wins!</p>
+
+  <div class="choices">
+    <button onclick="play('rock')">✊ Rock</button>
+    <button onclick="play('paper')">✋ Paper</button>
+    <button onclick="play('scissors')">✌ Scissors</button>
+  </div>
+
+  <div class="result" id="result"></div>
+  <div class="score" id="score">You: 0 | AI: 0</div>
+  <div class="winner" id="winner"></div>
+
+  <div class="link">
+    <p>AI Chat History: 
+      <a href="https://chatgpt.com/share/68d20a78-00bc-800e-9973-9f6920ef16bf" target="_blank">
+        Click here to view
+      </a>
+    </p>
+  </div>
+
+  <script>
+    let userScore = 0;
+    let aiScore = 0;
+
+    function play(userChoice) {
+      const choices = ["rock", "paper", "scissors"];
+      const aiChoice = choices[Math.floor(Math.random() * 3)];
+      let result = "";
+
+      if (userChoice === aiChoice) {
+        result = `It's a tie! You both chose ${userChoice}.`;
+      } else if (
+        (userChoice === "rock" && aiChoice === "scissors") ||
+        (userChoice === "paper" && aiChoice === "rock") ||
+        (userChoice === "scissors" && aiChoice === "paper")
+      ) {
+        userScore++;
+        result = `You win this round! ${userChoice} beats ${aiChoice}.`;
+      } else {
+        aiScore++;
+        result = `AI wins this round! ${aiChoice} beats ${userChoice}.`;
+      }
+
+      document.getElementById("result").innerText = result;
+      document.getElementById("score").innerText = `You: ${userScore} | AI: ${aiScore}`;
+
+      if (userScore === 5 || aiScore === 5) {
+        declareWinner();
+      }
+    }
+
+    function declareWinner() {
+      let finalMessage = userScore === 5 ? "🎉 You Win the Game!" : "🤖 AI Wins the Game!";
+      document.getElementById("winner").innerText = finalMessage;
+      // Disable buttons after game ends
+      const buttons = document.querySelectorAll(".choices button");
+      buttons.forEach(btn => btn.disabled = true);
+    }
+  </script>
+</body>
+</html>
